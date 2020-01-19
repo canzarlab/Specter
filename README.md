@@ -47,3 +47,10 @@ Input Data are gene expression data matrix (columns are genes (PCs) and rows are
 
 If you have any problem or question using the package please contact do@genzentrum.lmu.de
 
+We are planing to release the package in Python.
+
+References
+-----
+Stoeckius, M. et al. (2017). Simultaneous epitope and transcriptome
+measurement in single cells. Nature Methods, 14(9), 865–868.
+
