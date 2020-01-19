@@ -12,8 +12,9 @@ Undoubtly, Seurat (graph-based Louvain clustering) is the state-of-the-art metho
 
 #### Using Specter with multi-modal data
 
-We demonstrated on dataset of 8,617 cord blood mononuclear cells (CBMCs), produced by CITE-seq (Stoeckius et al. (2017)), that Specter can combine transtriptomic counts (RNA) and antibody-derived tags (ADT) to produce a better clustering than clustering of the individual modality (mRNA or ADT).
-<img src=img/cd4_cd8_genes.pdf  width="100%" height = "550">
+We demonstrated on dataset of 8,617 cord blood mononuclear cells (CBMCs), produced by CITE-seq (Stoeckius et al. (2017)), that Specter can combine transtriptomic counts (mRNA) and antibody-derived tags (ADT) to produce a better clustering than clustering of the individual modality (mRNA or ADT).
+
+![](img/multimodal.png)
 
 
 Systems Requirements
