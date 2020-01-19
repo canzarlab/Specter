@@ -7,7 +7,7 @@ This is a MATLAB Package of Specter. Specter is a novel computational method for
 
 #### Specter enhances cell type identification
 
-Undoubtly, Seurat (or graph-based Louvain algorithm) is a state-of-the-art method for big single cell RNA-seq clustering. We showed that Specter outperforms Seurat in term of accurary (ARI) and efficency on a large number of real scRNA-seq datasets. Moreover, Specter can highlight rare cell types in which Seurat might not find.
+Undoubtly, Seurat (or graph-based Louvain algorithm) is a state-of-the-art method for de novo identification of cell type. We showed that Specter outperforms Seurat in term of accurary (ARI) and efficency on a large number of real scRNA-seq datasets. Moreover, Specter can highlight rare cell types in which Seurat might not find.
 
 #### Using Specter with multi-modal data
 
