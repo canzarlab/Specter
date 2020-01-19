@@ -1,5 +1,4 @@
 # Specter: A novel tool for clustering large-scale single cell RNA-seq and multi-modal data
-===============
 
 Overview
 --------
