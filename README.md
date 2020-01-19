@@ -1,4 +1,4 @@
-# Specter: a novel tool for clustering large-scale single cell RNA-seq and multi-modal data
+# Specter: A novel tool for clustering large-scale single cell RNA-seq and multi-modal data
 ===============
 
 Overview
@@ -8,11 +8,11 @@ This is a MATLAB Package of Specter. Specter is a novel computational method for
 
 #### Specter enhances cell type identification
 
-Undoubtly, Seurat (graph-based Louvain clustering) is the state-of-the-art method for big single cell RNA-seq clustering. However, Specter outperforms Seurat in term of accurary (ARI) and efficency on a large number of real scRNA-seq datasets. 
+Undoubtly, Seurat (graph-based Louvain clustering) is the state-of-the-art method for big single cell RNA-seq clustering. We showed that Specter outperforms Seurat in term of accurary (ARI) and efficency on a large number of real scRNA-seq datasets. 
 
 #### Using Specter with multi-modal data
 
-We demonstrated on dataset of 8,617 cord blood mononuclear cells (CBMCs), produced by CITE-seq (Stoeckius et al. (2017)), that Specter can combine transtriptomic counts (mRNA) and antibody-derived tags (ADT) to produce a better clustering than clustering of the individual modality (mRNA or ADT).
+On multi-modal dataset of 8,617 cord blood mononuclear cells (CBMCs), produced by CITE-seq (Stoeckius et al. (2017)). The authors measure the single cell transcriptomes alongside the expression of 11 surface proteins, whose levels are quantified with DNA-barcoded antibodie. When we combine transtriptomic counts (mRNA) and antibody-derived tags (ADT), Specter reveals CD4 and CD8 T cells, which are quite similar transcriptomically. 
 
 ![](img/multimodal.png)
 
