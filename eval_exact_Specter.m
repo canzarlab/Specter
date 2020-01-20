@@ -1,4 +1,9 @@
 function cls = eval_exact_Specter(fea, n_clusters, ensemble_size, mingamma)
+    % Input: fea: expression data where rows are cells, collumns are PCs (genes)
+    % n_clusters: number of clusters
+    % ensemble_size: number of clusterings in the ensemble 
+    % mingamma: minimum gaussion bandwidth (default: 0.1)
+    
     [m, n] = size(fea);
     % apply pre-processing
     params.mode =0;

@@ -1,4 +1,10 @@
 function cls = eval_fast_Specter(fea, n_clusters, ensemble_size, mingamma, n_neighbors)
+    % Input: fea: expression data where rows are cells, collumns are PCs (genes)
+    % n_clusters: number of clusters
+    % ensemble_size: number of clusterings in the ensemble 
+    % mingamma: minimum gaussion bandwidth (default: 0.1)
+    % n_neighbors: parameter for k-nearest neighbor algorithm 
+    
     [m, n] = size(fea);
     samples_size = [n_clusters*100.0/sqrt(m)]; 
      % apply pre-processing
