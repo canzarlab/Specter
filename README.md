@@ -31,15 +31,10 @@ Unzip the package. Change the current directory in Matlab to the folder containi
 
 This directory includes the following main scripts:
 1) Specter_demo.m -- an example run of Specter on a specific dataset
-2) preprocessing.m -- do preprocessing of the input data (if applicable) 
-3) constructingNetwork.m -- construct a gene-gene co-expression network
-4) estimatingscEnergy.m -- estimate the single cell energy (scEnergy) for each cell
-5) ECA.m -- prinpipal component analysis of energy matrix
-6) clusteringCells.m -- perform unsupervised clustering of single cell data
+2) eval_exact_Specter.m -- run exact Specter algorithm (time complexity: O(n^2)) 
+3) eval_fast_Specter.m -- run fast Specter algorithm (time complexity: O(n))
 ---------------------------
-7) cluster_visualization.m -- visualize cells on two-dimensional space
-8) lineage_visualization.m -- display cell lineage hierarchy with transition probability
-
+4) run_multimodal_Specter.m -- an example of running Specter on multi-modal data (CBMCs).
 
 
 Please refer to Specter_demo.m for instructions on how to use this code.
