@@ -45,11 +45,11 @@ If you have any problem or question using the package please contact do@genzentr
 We are planing to release the package in Python.
 
 
-# Analyze multimodal clustering from Specter
-================
+## Analyze multimodal clustering from Specter
+
 This tutorial will demonstrate the annotation of cell type using the clusters produced by Specter using R. We use Seurat for data preprocessing and visualization.  
 
-## Load library and data
+### Load library and data
 
 ``` r
 library(Seurat)
@@ -78,9 +78,9 @@ pbmc.adt <- as.sparse(adt[1:49, ])
 pbmc.adt <- pbmc.adt[ ,rownames(selected_cells)]
 ```
 
-## Create Seurat object and preprocess the data
+### Create Seurat object and preprocess the data
 
-### Preprocessing mRNA
+#### Preprocessing mRNA
 
 ``` r
 pbmc <- CreateSeuratObject(counts = pbmc.rna)
@@ -102,7 +102,7 @@ pbmc <- RunTSNE(pbmc, dims = 1:20, method = "FIt-SNE")
 # DimPlot(pbmc, label = TRUE) + NoLegend()
 ```
 
-### Preprocessing ADT
+#### Preprocessing ADT
 
 ``` r
 pbmc[["ADT"]] <- CreateAssayObject(counts = pbmc.adt)
@@ -135,7 +135,7 @@ pbmc[["tsne_adt"]] <- RunTSNE(adt.dist, assay = "ADT", reduction.key = "adtTSNE_
 #DimPlot(pbmc, reduction = "tsne_adt") + NoLegend()
 ```
 
-## Read and visualize clusters from Specter
+### Read and visualize clusters from Specter
 
 ``` r
 sce_labels <- read.csv("/data/hoan/Specter/output/pbmc_nodoublet_minPts50_mimitou_adtK16_gamma_0.9_rnaK_16_gamma_0.5_labels_v2.csv", header = F)
@@ -161,9 +161,9 @@ CombinePlots(plots = list(tsne_rnaClusters, tsne_adtClusters), ncol = 2)
 
 ![](analysis_specter_minPts_50_markdown_files/figure-gfm/fig26-1.svg)<!-- -->
 
-## Running DE test to assign cell type identity to clusters
+### Running DE test to assign cell type identity to clusters
 
-### DE test on RNA
+#### DE test on RNA
 
 **Note that gene name starts with a prefix “hg19”.**
 
@@ -183,7 +183,7 @@ You can plot heatmap on top markers genes
 # DoHeatmap(pbmc, features = unique(rna.top10$gene), assay = "RNA", angle = 0) 
 ```
 
-### DE test on ADT
+#### DE test on ADT
 
 ``` r
 # Find protein markers for all clusters, and draw a heatmap
@@ -215,13 +215,13 @@ clustering to known cell types:
 | NK           | GNLY, NKG7         |
 | DC           | FCER1A, CST3       |
 
-### Look at the top marker genes and ADT, we get the following cluster IDs.
+#### Look at the top marker genes and ADT, we get the following cluster IDs.
 
 ``` r
 new.cluster.ids <- c("CD8+CD27+ T","CD4+CD27-DR+ T","CD14+ Mono","FCGR3A+ Mono","CD8+CD27+ T","Naive CD4+ T","CD8+CD27- T","CD8+CD27- T", "CD8+CD27- T","Doublets","CD8+CD27- T","CD4+CD27+DR- T","MK","Effector CD8+ T","NK","B")
 ```
 
-### Visualize on cluster IDs
+#### Visualize on cluster IDs
 
 ``` r
 sce_labels <- mapvalues(sce_labels, from = levels(sce_labels), to = new.cluster.ids)
@@ -243,9 +243,9 @@ CombinePlots(plots = list(tsne_rnaClusters, tsne_adtClusters), ncol = 2)
 
 ![](analysis_specter_minPts_50_markdown_files/figure-gfm/fig2-1.svg)<!-- -->
 
-## Cluster validation
+### Cluster validation
 
-### Similar celltypes as Specter
+#### Similar celltypes as Specter
 
 Confirm CD27+ vs CD27- subtypes (based on
 CD27)
