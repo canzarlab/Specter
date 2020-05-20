@@ -60,9 +60,10 @@ for the antibody-derived tags
 (ADT).
 
 ``` r
-selected_cells <- read.csv(file = "/data/results_nobackup/hoan/mimitou_clustering/pbmc_nodoublet_minPts50_selectedcells.csv", sep = ",", 
-                           header = TRUE, row.names = 1)
-
+# First we load the selected cells by CiteFuse doublet removal. 
+selected_cells <- read.csv(file = "data/pbmc_nodoublet_minPts50_selectedcells.csv", sep = ",", 
+header = TRUE, row.names = 1)
+# Read data
 pbmc.rna <- as.sparse(read.csv(file = "/data/data_nobackup/hoan/Mimitou/pbmc_rna.csv", sep = ",", 
                                header = TRUE, row.names = 1))
 pbmc.rna <- pbmc.rna[, rownames(selected_cells)] # remove doublet
@@ -128,7 +129,8 @@ pbmc[["tsne_adt"]] <- RunTSNE(adt.dist, assay = "ADT", reduction.key = "adtTSNE_
 ### Read and visualize clusters from Specter
 
 ``` r
-sce_labels <- read.csv("/data/hoan/Specter/output/pbmc_nodoublet_minPts50_mimitou_adtK16_gamma_0.9_rnaK_16_gamma_0.5_labels_v2.csv", header = F)
+# Load the results from Specter. Run the file 'run_multimodal_Specter.m' to get the results We also store the output in directory output and you can load it directly without running the script.
+sce_labels <- read.csv("output/pbmc_specter_clustering.csv", header = F)
 sce_labels <- as.factor(sce_labels$V1)
 names(sce_labels) <- pbmc.adt@Dimnames[[2]]
 
