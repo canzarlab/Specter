@@ -259,7 +259,7 @@ RidgePlot(pbmc, assay = "RNA", features = paste("hg19-", all_markers, sep=""), n
 References
 -----
 Stoeckius, M. et al. (2017). Simultaneous epitope and transcriptome
-measurement in single cells. Nature Methods, 14(9), 865–868.
+measurement in single cells. Nature Methods, 14(9), 865–868. <br>
 Mimitou, et al. (2019). Multiplexed detection of proteins, transcriptomes, 
 clonotypes and CRISPR perturbations in single cells. Nature Methods, 16(5), 409–412.
 
