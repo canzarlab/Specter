@@ -5,9 +5,9 @@ addpath('utils');
 format short g;
 
 % read mRNA data
-fea = csvread('data/pbmc_rna_pca.csv'); % read a csv file
+fea = csvread('data/pbmc_process_RNA_pca.csv'); % read a csv file
 % read ADT data
-fea_adt = csvread('data/pbmc_adt.csv'); % read a csv file
+fea_adt = csvread('data/pbmc_process_ADT.csv'); % read a csv file
 
 [m, n] = size(fea);
 gamma_rna = 0.5; 
