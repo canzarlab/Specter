@@ -7,11 +7,12 @@ This is a MATLAB Package of Specter. Specter is a novel computational method for
 
 #### Specter enhances cell type identification
 
-Undoubtly, Seurat (or graph-based Louvain algorithm) is a state-of-the-art method for de novo identification of cell type. We showed that Specter outperforms Seurat in term of accurary (ARI) and efficency on a large number of real scRNA-seq datasets. Moreover, Specter can highlight rare cell types in which Seurat might not find.
+Numerous methods have been proposed for clustering scRNA-seq data sets, with Seurat and its underlying Louvain clustering algorithm being arguably the most widely used one. We showed that Specter outperforms Seurat in term of accurary and speed on a large number of real scRNA-seq datasets. Moreover, Specter can highlight rare cell types in which Seurat might not find.
 
 #### Using Specter with multi-modal data
 
-On multi-modal dataset of 8,617 cord blood mononuclear cells (CBMCs), produced by CITE-seq (Stoeckius et al. (2017)). The authors measure the single cell transcriptomes alongside the expression of 11 surface proteins, whose levels are quantified with DNA-barcoded antibodie. When we combine transtriptomic counts (mRNA) and antibody-derived tags (ADT), Specter reveals CD4 and CD8 T cells, which are quite similar transcriptomically. 
+On multi-modal dataset of 8,617 cord blood mononuclear cells (CBMCs), produced by CITE-seq (Stoeckius et al. (2017)). The authors measure the single cell transcriptomes alongside the expression of 11 surface proteins, whose levels are quantified with DNA-barcoded antibodie. When we combine transtriptomic counts (mRNA) and antibody-derived tags (ADT), Specter is able to utilize multimodal omics measurements to resolve subtle transcriptomic differences between subpopulations of cells.
+
 
 ![](img/multimodal.png)
 
@@ -39,7 +40,6 @@ This directory includes the following main scripts:
 
 Please refer to Specter_demo.m for instructions on how to use this code.
 Input Data are gene expression data matrix (columns are genes (PCs) and rows are cells). 
-
 
 ## Analyze multimodal clustering from Specter
 
@@ -87,7 +87,9 @@ pbmc <- FindVariableFeatures(pbmc)
 # standard scaling
 pbmc <- ScaleData(pbmc)
 ```
-__Dimentionality reduction__
+
+Run dimentionality reduction
+
 ``` r
 # Run PCA, select 20 PCs for tSNE visualization and graph-based clustering
 pbmc <- RunPCA(pbmc, verbose = FALSE)
@@ -102,11 +104,10 @@ pbmc <- RunTSNE(pbmc, dims = 1:20, method = "FIt-SNE")
 pbmc[["ADT"]] <- CreateAssayObject(counts = pbmc.adt)
 # Use a centered log-ratio (CLR) normalization
 pbmc <- NormalizeData(pbmc, assay = "ADT", normalization.method = "CLR")
-```
- __Centering and scaling data matrix__
-``` r
 pbmc <- ScaleData(pbmc, assay = "ADT")
 ```
+
+Run dimentionality reduction
 
 ``` r
 # Set ADT data as default. 
