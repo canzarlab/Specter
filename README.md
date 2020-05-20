@@ -252,7 +252,7 @@ all_markers <- c("NKG7", "GZMA")
 RidgePlot(pbmc, assay = "RNA", features = paste("hg19-", all_markers, sep=""), ncol = 2)
 ```
 
-![](analysis_specter_minPts_50_markdown_files/figure-gfm/fig1bc-1.svg)<!-- height="30%" width="90%" -->
+![height="30%", width="90%"](analysis_specter_minPts_50_markdown_files/figure-gfm/fig1bc-1.svg)<!-- -->
 
 
 
