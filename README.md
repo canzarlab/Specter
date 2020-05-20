@@ -233,12 +233,9 @@ CombinePlots(plots = list(tsne_rnaClusters, tsne_adtClusters), ncol = 2)
 
 ![](analysis_specter_minPts_50_markdown_files/figure-gfm/fig2-1.svg)<!-- -->
 
-### Cluster validation
+### Validation
 
-#### Similar celltypes as Specter
-
-Confirm CD27+ vs CD27- subtypes (based on
-CD27)
+Confirm CD27+ vs CD27- subtypes (based on CD27)
 
 ``` r
 RidgePlot(pbmc, assay = "ADT", features = c("CD27"), ncol = 2)
@@ -246,7 +243,7 @@ RidgePlot(pbmc, assay = "ADT", features = c("CD27"), ncol = 2)
 
 ![](analysis_specter_minPts_50_markdown_files/figure-gfm/fig1b-1.svg)<!-- -->
 
-Confirm DR+ DR- subtype based on genes “NKG7”, “GZMA” (see Specter)
+Confirm DR+ DR- subtype based on genes “NKG7”, “GZMA” 
 
 ``` r
 all_markers <- c("NKG7", "GZMA")
