@@ -91,9 +91,7 @@ pbmc <- FindVariableFeatures(pbmc)
 # standard scaling
 pbmc <- ScaleData(pbmc)
 ```
-
-    ## Centering and scaling data matrix
-
+__Dimentionality reduction__
 ``` r
 # Run PCA, select 20 PCs for tSNE visualization and graph-based clustering
 pbmc <- RunPCA(pbmc, verbose = FALSE)
@@ -106,18 +104,13 @@ pbmc <- RunTSNE(pbmc, dims = 1:20, method = "FIt-SNE")
 
 ``` r
 pbmc[["ADT"]] <- CreateAssayObject(counts = pbmc.adt)
-
 # Use a centered log-ratio (CLR) normalization
 pbmc <- NormalizeData(pbmc, assay = "ADT", normalization.method = "CLR")
 ```
-
-    ## Normalizing across features
-
+ __Centering and scaling data matrix__
 ``` r
 pbmc <- ScaleData(pbmc, assay = "ADT")
 ```
-
-    ## Centering and scaling data matrix
 
 ``` r
 # Set ADT data as default. 
