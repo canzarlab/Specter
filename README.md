@@ -43,7 +43,7 @@ Input Data are gene expression data matrix (columns are genes (PCs) and rows are
 
 ## Analyze multimodal clustering from Specter
 
-This tutorial will demonstrate the annotation of cell type using the results produced by Specter on a data of CITE-seq data from human healthy PBMCs (Mimitou et al., 2019). We use Seurat R package for data preprocessing and visualization.  
+This tutorial will demonstrate the annotation of cell types using the results produced by Specter. We analyze a CITE-seq data from healthy human PBMCs (Mimitou et al., 2019). We use Seurat R package for data preprocessing and visualization.  
 
 ### Load library and data
 
