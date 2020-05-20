@@ -58,9 +58,9 @@ function [opts, new_fea] = learn_LSC(fea, params)
 
     if isfield(params,'mode') & params.mode == 2
         fprintf('set for single mode\n');
-        opts.maxIter = 1000;
-        opts.numRep = 5;
-        opts.r = max(4, n_clusters -3);
+        opts.maxIter = 3000;
+        opts.numRep = 10;
+        opts.r = max(4, n_clusters);
         opts.p= min(500, round(m/5)); %round(m/10);
     end
     % use Matlab kmeans or liteKmeans
