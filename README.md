@@ -40,14 +40,10 @@ This directory includes the following main scripts:
 Please refer to Specter_demo.m for instructions on how to use this code.
 Input Data are gene expression data matrix (columns are genes (PCs) and rows are cells). 
 
-If you have any problem or question using the package please contact do@genzentrum.lmu.de
-
-We are planing to release the package in Python.
-
 
 ## Analyze multimodal clustering from Specter
 
-This tutorial will demonstrate the annotation of cell type using the clusters produced by Specter using R. We use Seurat for data preprocessing and visualization.  
+This tutorial will demonstrate the annotation of cell type using the results produced by Specter on a data of CITE-seq data from human healthy PBMCs (Mimitou et al., 2019). We use Seurat R package for data preprocessing and visualization.  
 
 ### Load library and data
 
