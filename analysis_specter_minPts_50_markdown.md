@@ -1,51 +1,9 @@
-# Specter: A novel tool for clustering large-scale single cell RNA-seq and multi-modal data
+Analyze multimodal clustering from Specter
+================
+Canzar Lab
+4/14/2020
 
-Overview
---------
-
-This is a MATLAB Package of Specter. Specter is a novel computational method for clustering large-scale single cell RNA-seq data. In addition, Specter can combine the data from different measurements such as RNA measurements and the antibody-derived tags (collected on the same set of cells). Specter runs in linear time with respect to number of cells, thus it is very suitable for analyzing very big single cell RNA-seq data. On a data set comprising 2 million cells from mouse embryos, Specter requires only 26 minutes to compute the clusters. 
-
-#### Specter enhances cell type identification
-
-Numerous methods have been proposed for clustering scRNA-seq data sets, with Seurat and its underlying Louvain clustering algorithm being arguably the most widely used one. We showed that Specter outperforms Seurat in term of accurary and speed on a large number of real scRNA-seq datasets. Moreover, Specter can highlight rare cell types in which Seurat might not find.
-
-#### Using Specter with multi-modal data
-
-On multi-modal dataset of 8,617 cord blood mononuclear cells (CBMCs), produced by CITE-seq (Stoeckius et al. (2017)). The authors measure the single cell transcriptomes alongside the expression of 11 surface proteins, whose levels are quantified with DNA-barcoded antibodie. When we combine transtriptomic counts (mRNA) and antibody-derived tags (ADT), Specter is able to utilize multimodal omics measurements to resolve subtle transcriptomic differences between subpopulations of cells.
-
-
-![](img/multimodal.png)
-
-
-Systems Requirements
---------------------
-
-Specter is independent of operating systems because it is written in Matlab. Basic requirement for running Specter includes MATLAB and the Statistics and Machine Learning Toolbox. 
-
-This Package has been tested using MATLAB 2018a on Linux. 
-
-
-Usage
------
-
-Unzip the package. Change the current directory in Matlab to the folder containing the scripts.
-
-This directory includes the following main scripts:
-1) Specter_demo.m -- an example run of Specter on a specific dataset
-2) eval_exact_Specter.m -- run exact Specter algorithm (time complexity: O(n^2)) 
-3) eval_fast_Specter.m -- run fast Specter algorithm (time complexity: O(n))
----------------------------
-4) run_multimodal_Specter.m -- an example of running Specter on multi-modal data (PBMCs).
-
-
-Please refer to Specter_demo.m for instructions on how to use this code.
-Input Data are gene expression data matrix (columns are genes (PCs) and rows are cells). 
-
-## Analyze multimodal clustering from Specter
-
-This tutorial will demonstrate the annotation of cell type using the results produced by Specter on a data of CITE-seq data from human healthy PBMCs (Mimitou et al., 2019). We use Seurat R package for data preprocessing and visualization.  
-
-### Load library and data
+## Load library and data
 
 ``` r
 library(Seurat)
@@ -74,9 +32,9 @@ pbmc.adt <- as.sparse(adt[1:49, ])
 pbmc.adt <- pbmc.adt[ ,rownames(selected_cells)]
 ```
 
-### Create Seurat object and preprocess the data
+## Create Seurat object and preprocess the data
 
-#### Preprocessing mRNA
+### Preprocessing mRNA
 
 ``` r
 pbmc <- CreateSeuratObject(counts = pbmc.rna)
@@ -88,7 +46,7 @@ pbmc <- FindVariableFeatures(pbmc)
 pbmc <- ScaleData(pbmc)
 ```
 
-Run dimentionality reduction
+    ## Centering and scaling data matrix
 
 ``` r
 # Run PCA, select 20 PCs for tSNE visualization and graph-based clustering
@@ -98,16 +56,22 @@ pbmc <- RunTSNE(pbmc, dims = 1:20, method = "FIt-SNE")
 # DimPlot(pbmc, label = TRUE) + NoLegend()
 ```
 
-#### Preprocessing ADT
+### Preprocessing ADT
 
 ``` r
 pbmc[["ADT"]] <- CreateAssayObject(counts = pbmc.adt)
+
 # Use a centered log-ratio (CLR) normalization
 pbmc <- NormalizeData(pbmc, assay = "ADT", normalization.method = "CLR")
+```
+
+    ## Normalizing across features
+
+``` r
 pbmc <- ScaleData(pbmc, assay = "ADT")
 ```
 
-Run dimentionality reduction
+    ## Centering and scaling data matrix
 
 ``` r
 # Set ADT data as default. 
@@ -125,7 +89,7 @@ pbmc[["tsne_adt"]] <- RunTSNE(adt.dist, assay = "ADT", reduction.key = "adtTSNE_
 #DimPlot(pbmc, reduction = "tsne_adt") + NoLegend()
 ```
 
-### Read and visualize clusters from Specter
+## Read and visualize clusters from Specter
 
 ``` r
 sce_labels <- read.csv("/data/hoan/Specter/output/pbmc_nodoublet_minPts50_mimitou_adtK16_gamma_0.9_rnaK_16_gamma_0.5_labels_v2.csv", header = F)
@@ -151,9 +115,9 @@ CombinePlots(plots = list(tsne_rnaClusters, tsne_adtClusters), ncol = 2)
 
 ![](analysis_specter_minPts_50_markdown_files/figure-gfm/fig26-1.svg)<!-- -->
 
-### Running DE test to assign cell type identity to clusters
+## Running DE test to assign cell type identity to clusters
 
-#### DE test on RNA
+### DE test on RNA
 
 **Note that gene name starts with a prefix “hg19”.**
 
@@ -173,7 +137,7 @@ You can plot heatmap on top markers genes
 # DoHeatmap(pbmc, features = unique(rna.top10$gene), assay = "RNA", angle = 0) 
 ```
 
-#### DE test on ADT
+### DE test on ADT
 
 ``` r
 # Find protein markers for all clusters, and draw a heatmap
@@ -205,13 +169,13 @@ clustering to known cell types:
 | NK           | GNLY, NKG7         |
 | DC           | FCER1A, CST3       |
 
-#### Look at the top marker genes and ADT, we get the following cluster IDs.
+### Look at the top marker genes and ADT, we get the following cluster IDs.
 
 ``` r
 new.cluster.ids <- c("CD8+CD27+ T","CD4+CD27-DR+ T","CD14+ Mono","FCGR3A+ Mono","CD8+CD27+ T","Naive CD4+ T","CD8+CD27- T","CD8+CD27- T", "CD8+CD27- T","Doublets","CD8+CD27- T","CD4+CD27+DR- T","MK","Effector CD8+ T","NK","B")
 ```
 
-#### Visualize on cluster IDs
+### Visualize on cluster IDs
 
 ``` r
 sce_labels <- mapvalues(sce_labels, from = levels(sce_labels), to = new.cluster.ids)
@@ -233,9 +197,12 @@ CombinePlots(plots = list(tsne_rnaClusters, tsne_adtClusters), ncol = 2)
 
 ![](analysis_specter_minPts_50_markdown_files/figure-gfm/fig2-1.svg)<!-- -->
 
-### Validation
+## Cluster validation
 
-Confirm CD27+ vs CD27- subtypes (based on CD27)
+### Similar celltypes as Specter
+
+Confirm CD27+ vs CD27- subtypes (based on
+CD27)
 
 ``` r
 RidgePlot(pbmc, assay = "ADT", features = c("CD27"), ncol = 2)
@@ -243,7 +210,7 @@ RidgePlot(pbmc, assay = "ADT", features = c("CD27"), ncol = 2)
 
 ![](analysis_specter_minPts_50_markdown_files/figure-gfm/fig1b-1.svg)<!-- -->
 
-Confirm DR+ DR- subtype based on genes “NKG7”, “GZMA” 
+Confirm DR+ DR- subtype based on genes “NKG7”, “GZMA” (see Specter)
 
 ``` r
 all_markers <- c("NKG7", "GZMA")
@@ -251,11 +218,3 @@ RidgePlot(pbmc, assay = "RNA", features = paste("hg19-", all_markers, sep=""), n
 ```
 
 ![](analysis_specter_minPts_50_markdown_files/figure-gfm/fig1bc-1.svg)<!-- -->
-
-
-
-References
------
-Stoeckius, M. et al. (2017). Simultaneous epitope and transcriptome
-measurement in single cells. Nature Methods, 14(9), 865–868.
-
