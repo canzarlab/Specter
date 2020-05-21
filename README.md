@@ -59,17 +59,19 @@ Next we load two count matrices : one for the RNA measurements, and one
 for the antibody-derived tags
 (ADT).
 
+First you need to extract the data 'pbmc.zip' in the directory /data/ and put all data in this folder to your current R working directory.
+
 ``` r
 # First we load the selected cells by CiteFuse doublet removal. 
 selected_cells <- read.csv(file = "data/pbmc_nodoublet_minPts50_selectedcells.csv", sep = ",", 
 header = TRUE, row.names = 1)
 # Read data
-pbmc.rna <- as.sparse(read.csv(file = "/data/data_nobackup/hoan/Mimitou/pbmc_rna.csv", sep = ",", 
+pbmc.rna <- as.sparse(read.csv(file = "data/pbmc_rna.csv", sep = ",", 
                                header = TRUE, row.names = 1))
 pbmc.rna <- pbmc.rna[, rownames(selected_cells)] # remove doublet
 
 # Load in the ADT UMI matrix
-adt <- read.csv(file = "/data/data_nobackup/hoan/Mimitou/pbmc_adt.csv", sep = ",", 
+adt <- read.csv(file = "data/pbmc_adt.csv", sep = ",", 
                 header = TRUE, row.names = 1)
 pbmc.adt <- as.sparse(adt[1:49, ])
 pbmc.adt <- pbmc.adt[ ,rownames(selected_cells)]
