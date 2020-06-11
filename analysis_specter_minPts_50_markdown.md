@@ -18,15 +18,15 @@ for the antibody-derived tags
 (ADT).
 
 ``` r
-selected_cells <- read.csv(file = "/data/results_nobackup/hoan/mimitou_clustering/pbmc_nodoublet_minPts50_selectedcells.csv", sep = ",", 
+selected_cells <- read.csv(file = "data/pbmc_nodoubletaftercluster_minPts50_selectedcells.csv", sep = ",", 
                            header = TRUE, row.names = 1)
 
-pbmc.rna <- as.sparse(read.csv(file = "/data/data_nobackup/hoan/Mimitou/pbmc_rna.csv", sep = ",", 
+pbmc.rna <- as.sparse(read.csv(file = "data/pbmc_rna.csv", sep = ",", 
                                header = TRUE, row.names = 1))
 pbmc.rna <- pbmc.rna[, rownames(selected_cells)] # remove doublet
 
 # Load in the ADT UMI matrix
-adt <- read.csv(file = "/data/data_nobackup/hoan/Mimitou/pbmc_adt.csv", sep = ",", 
+adt <- read.csv(file = "data/pbmc_adt.csv", sep = ",", 
                 header = TRUE, row.names = 1)
 pbmc.adt <- as.sparse(adt[1:49, ])
 pbmc.adt <- pbmc.adt[ ,rownames(selected_cells)]
@@ -92,7 +92,7 @@ pbmc[["tsne_adt"]] <- RunTSNE(adt.dist, assay = "ADT", reduction.key = "adtTSNE_
 ## Read and visualize clusters from Specter
 
 ``` r
-sce_labels <- read.csv("/data/hoan/Specter/output/pbmc_nodoublet_minPts50_mimitou_adtK16_gamma_0.9_rnaK_16_gamma_0.5_labels_v2.csv", header = F)
+sce_labels <- read.csv("output/pbmc_specter_clustering.csv", header = F)
 sce_labels <- as.factor(sce_labels$V1)
 names(sce_labels) <- pbmc.adt@Dimnames[[2]]
 
@@ -172,7 +172,7 @@ clustering to known cell types:
 ### Look at the top marker genes and ADT, we get the following cluster IDs.
 
 ``` r
-new.cluster.ids <- c("CD8+CD27+ T","CD4+CD27-DR+ T","CD14+ Mono","FCGR3A+ Mono","CD8+CD27+ T","Naive CD4+ T","CD8+CD27- T","CD8+CD27- T", "CD8+CD27- T","Doublets","CD8+CD27- T","CD4+CD27+DR- T","MK","Effector CD8+ T","NK","B")
+new.cluster.ids <- c("CD4+CD27-DR+ T","CD8+CD27- T","CD8+CD27- T","CD8+CD27- T","CD4+CD27+ T", "CD4+CD27-DR- T","CD14+ Mono","FCGR3A+ Mono", "CD14+ Mono","CD8+CD27+ T","Naive CD4+ T","MK","NK","CD8+CD27- T","Effector CD8+ T","B") 
 ```
 
 ### Visualize on cluster IDs
