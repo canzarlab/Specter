@@ -10,8 +10,8 @@ fea = csvread('data/pbmc_process_RNA_pca.csv'); % read a csv file
 fea_adt = csvread('data/pbmc_process_ADT.csv'); % read a csv file
 
 [m, n] = size(fea);
-gamma_rna = 0.5; 
-gamma_adt = 0.9;
+gamma_rna = 0.4; 
+gamma_adt = 0.3;
 n_clusters_rna = 16; 
 n_clusters_adt = 16;
 % get the parameter for model 
