@@ -1,5 +1,5 @@
 function M = selective_sampling(clusters, k, L)
- fprintf('------------------------------- selective sampling -------------------------------------\n');  
+ % fprintf('------------------------------- selective sampling -------------------------------------\n');  
    [m, n] = size(clusters);
    M = []; % store indices
    for iter =1:1:L

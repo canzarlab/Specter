@@ -23,7 +23,7 @@ function cls = eval_fast_Specter(fea, n_clusters, ensemble_size, mingamma, n_nei
         opts.maxIter = 50;
     end
     N = ensemble_size; 
-    fprintf('Ensemble size: %i\n', N);
+    % fprintf('Ensemble size: %i\n', N);
     optsVec = repmat(opts, N);
     minsigma = mingamma; 
 
@@ -36,7 +36,7 @@ function cls = eval_fast_Specter(fea, n_clusters, ensemble_size, mingamma, n_nei
 
     n_samples = min(m, round(n_clusters*sqrt(m)));
  
-    fprintf('run selective_sampling \n');
+    % fprintf('run selective_sampling \n');
     cl = selective_sampling(clusters,n_clusters, n_samples); 
 
     selective_clusters = clusters(:, cl);
@@ -47,7 +47,7 @@ function cls = eval_fast_Specter(fea, n_clusters, ensemble_size, mingamma, n_nei
     %% --------------------- compute ensemble clustering -----------------------------------%% 
     ensemble = evalCOAL(selective_clusters, n_clusters); % run hierachical clustering of AL on co-association matrix
   
-    fprintf('use kNN algorithm with k = %i \n', n_neighbors);
+    % fprintf('use kNN algorithm with k = %i \n', n_neighbors);
     model = fitcknn(trainData, ensemble,'NumNeighbors', n_neighbors); % nn = 5 
     testData = fea(unlabel_cl, :);
     prediction = predict(model,testData);

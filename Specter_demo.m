@@ -34,4 +34,4 @@ score_v2 = eval_rand(labels_true, exact_specter_labels);
 % fast Specter
 n_neighbors = 5; %% parameter for k-nearest neighbor algorithm (default: 5)
 fast_specter_labels = eval_fast_Specter(data, n_clusters, ensemble_size, mingamma, n_neighbors);
-score_v3 = eval_rand(labels_true, exact_specter_labels);
+score_v3 = eval_rand(labels_true, fast_specter_labels);
