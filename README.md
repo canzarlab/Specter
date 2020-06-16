@@ -3,7 +3,7 @@
 Overview
 --------
 
-This is a MATLAB Package of Specter. Specter is a novel computational method for clustering large-scale single cell RNA-seq data. In addition, Specter can combine the data from different measurements such as RNA measurements and the antibody-derived tags (collected on the same set of cells). Specter runs in linear time with respect to number of cells, thus it is very suitable for analyzing very big single cell RNA-seq data. On a data set comprising 2 million cells from mouse embryos, Specter requires only 26 minutes to compute the clusters. 
+Specter is a novel computational method for clustering large-scale single cell RNA-seq data. In addition, Specter can combine the data from different measurements such as RNA measurements and the antibody-derived tags (collected on the same set of cells). Specter runs in linear time with respect to number of cells, thus it is very suitable for analyzing very big single cell RNA-seq data. On a data set comprising 2 million cells from mouse embryos, Specter requires only 26 minutes to compute the clusters. 
 
 #### Specter enhances cell type identification
 
@@ -43,7 +43,7 @@ Input Data are gene expression data matrix (columns are genes (PCs) and rows are
 
 ## Analyze multimodal clustering from Specter
 
-This tutorial will demonstrate the annotation of cell type using the results produced by Specter on a data of CITE-seq data from human healthy PBMCs (Mimitou et al., 2019). We use Seurat R package for data preprocessing and visualization.  
+This tutorial will demonstrate the annotation of cell types using the results produced by Specter. We analyze a CITE-seq data from healthy human PBMCs (Mimitou et al., 2019). We use Seurat R package for data preprocessing and visualization. The analysis of Citefuse and CBMC data set can be found in directory multimodal_analysis.
 
 ### Load library and data
 
@@ -59,17 +59,19 @@ Next we load two count matrices : one for the RNA measurements, and one
 for the antibody-derived tags
 (ADT).
 
+First you need to extract the data 'pbmc.zip' in the directory /data/ and put all data in this folder to your current R working directory.
+
 ``` r
 # First we load the selected cells by CiteFuse doublet removal. 
 selected_cells <- read.csv(file = "data/pbmc_nodoublet_minPts50_selectedcells.csv", sep = ",", 
 header = TRUE, row.names = 1)
 # Read data
-pbmc.rna <- as.sparse(read.csv(file = "/data/data_nobackup/hoan/Mimitou/pbmc_rna.csv", sep = ",", 
+pbmc.rna <- as.sparse(read.csv(file = "data/pbmc_rna.csv", sep = ",", 
                                header = TRUE, row.names = 1))
 pbmc.rna <- pbmc.rna[, rownames(selected_cells)] # remove doublet
 
 # Load in the ADT UMI matrix
-adt <- read.csv(file = "/data/data_nobackup/hoan/Mimitou/pbmc_adt.csv", sep = ",", 
+adt <- read.csv(file = "data/pbmc_adt.csv", sep = ",", 
                 header = TRUE, row.names = 1)
 pbmc.adt <- as.sparse(adt[1:49, ])
 pbmc.adt <- pbmc.adt[ ,rownames(selected_cells)]
@@ -252,12 +254,14 @@ all_markers <- c("NKG7", "GZMA")
 RidgePlot(pbmc, assay = "RNA", features = paste("hg19-", all_markers, sep=""), ncol = 2)
 ```
 
-![](analysis_specter_minPts_50_markdown_files/figure-gfm/fig1bc-1.svg)<!-- -->
+![height="30%", width="90%"](analysis_specter_minPts_50_markdown_files/figure-gfm/fig1bc-1.svg)<!-- -->
 
 
 
 References
 -----
 Stoeckius, M. et al. (2017). Simultaneous epitope and transcriptome
-measurement in single cells. Nature Methods, 14(9), 865–868.
+measurement in single cells. Nature Methods, 14(9), 865–868. <br>
+Mimitou, E.P. et al. (2019). Multiplexed detection of proteins, transcriptomes, 
+clonotypes and CRISPR perturbations in single cells. Nature Methods, 16(5), 409–412.
 
