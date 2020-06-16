@@ -212,7 +212,7 @@ clustering to known cell types:
 #### Look at the top marker genes and ADT, we get the following cluster IDs.
 
 ``` r
-new.cluster.ids <- c("CD8+CD27+ T","CD4+CD27-DR+ T","CD14+ Mono","FCGR3A+ Mono","CD8+CD27+ T","Naive CD4+ T","CD8+CD27- T","CD8+CD27- T", "CD8+CD27- T","Doublets","CD8+CD27- T","CD4+CD27+DR- T","MK","Effector CD8+ T","NK","B")
+new.cluster.ids <- c("CD4+CD27-DR+ T","CD8+CD27- T","CD8+CD27- T","CD8+CD27- T","CD4+CD27+ T","CD4+CD27-DR- T","CD14+ Mono","FCGR3A+ Mono", "CD14+ Mono","CD8+CD27+ T","Naive CD4+ T","MK","NK","CD8+CD27- T","Effector CD8+ T","B")
 ```
 
 #### Visualize on cluster IDs
