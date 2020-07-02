@@ -41,7 +41,7 @@ This directory includes the following main scripts:
 Please refer to Specter_demo.m for instructions on how to use this code.
 Input Data are gene expression data matrix (columns are genes (PCs) and rows are cells). 
 
-Feel free to contact us if you want to run Specter on your data via e-mail do@genzentrum.lmu.de.
+If you do not have MATLAB install, feel free to contact us if you want to run Specter on your data via e-mail do@genzentrum.lmu.de.
 
 ## Analyze multimodal clustering from Specter
 
