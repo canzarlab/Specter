@@ -3,7 +3,7 @@
 Overview
 --------
 
-Specter is a novel computational method for clustering large-scale single cell RNA-seq data. In addition, Specter can combine the data from different measurements such as RNA measurements and the antibody-derived tags (collected on the same set of cells). Specter runs in linear time with respect to number of cells, thus it is very suitable for analyzing very big single cell RNA-seq data. On a data set comprising 2 million cells from mouse embryos, Specter requires only 26 minutes to compute the clusters. For details you can find in our paper here: https://www.biorxiv.org/content/10.1101/2020.06.15.151910v1.full
+Specter is a novel computational method for clustering large-scale single cell RNA-seq data. In addition, Specter can combine the data from different measurements such as RNA measurements and the antibody-derived tags (collected on the same set of cells). Specter runs in linear time with respect to number of cells, thus it is very suitable for analyzing very big single cell RNA-seq data. On a data set comprising 2 million cells from mouse embryos, Specter requires only 26 minutes to compute the clusters. For details you can find in our manuscript here: https://www.biorxiv.org/content/10.1101/2020.06.15.151910v1.full. __If you need help on running Specter on your dataset, feel free to send your data to us via e-mail do@genzentrum.lmu.de. We recommend you to do similar data preprocessing as described in your manuscript.__
 
 #### Specter enhances cell type identification
 
@@ -22,7 +22,7 @@ Systems Requirements
 
 Specter is independent of operating systems because it is written in Matlab. Basic requirement for running Specter includes MATLAB and the Statistics and Machine Learning Toolbox. 
 
-This Package has been tested using MATLAB 2018a on Linux. 
+This Package has been tested using MATLAB 2018a on Linux. Feel free to contact us if you want to run Specter on your data via e-mail do@genzentrum.lmu.de. 
 
 
 Usage
