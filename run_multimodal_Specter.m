@@ -10,8 +10,8 @@ fea = csvread('data/pbmc_process_RNA_pca.csv'); % read a csv file
 fea_adt = csvread('data/pbmc_process_ADT.csv'); % read a csv file
 
 [m, n] = size(fea);
-gamma_rna = 0.4; 
-gamma_adt = 0.3;
+gamma_rna = 0.6; 
+gamma_adt = 1.1;
 n_clusters_rna = 16; 
 n_clusters_adt = 16;
 % get the parameter for model 
@@ -23,8 +23,8 @@ params.n_clusters = n_clusters_rna;
 [opts, fea] = learn_LSC(fea, params);
 
 % compute ensemble
-N = 200; 
-M = 200;
+N = 100; 
+M = 100;
 fprintf('Ensemble size: %i\n', N + M);
 clusters = zeros(N + M, m);
 
@@ -43,7 +43,7 @@ parfor i = N+1:1:(N+M)
     clusters(i,:) = LSC_eigen(fea_adt, n_clusters_adt, optsVec(i-N), rand*0.1 + gamma_adt); 
 end
 
-ensemble = evalCOAL(clusters, 16); % run hierachical clustering of AL on co-association matrix
+ensemble = evaljointCOAL(clusters, N, M, fea, fea_adt, 16); % run hierachical clustering of AL on co-association matrix
 toc;
 
 % save label 

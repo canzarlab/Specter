@@ -18,7 +18,7 @@ for the antibody-derived tags
 (ADT).
 
 ``` r
-selected_cells <- read.csv(file = "data/pbmc_nodoubletaftercluster_minPts50_selectedcells.csv", sep = ",", 
+selected_cells <- read.csv(file = "data/pbmc_nodoublet_minPts50_selectedcells.csv", sep = ",", 
                            header = TRUE, row.names = 1)
 
 pbmc.rna <- as.sparse(read.csv(file = "data/pbmc_rna.csv", sep = ",", 
@@ -172,7 +172,7 @@ clustering to known cell types:
 ### Look at the top marker genes and ADT, we get the following cluster IDs.
 
 ``` r
-new.cluster.ids <- c("CD4+CD27-DR+ T","CD8+CD27- T","CD8+CD27- T","CD8+CD27- T","CD4+CD27+ T", "CD4+CD27-DR- T","CD14+ Mono","FCGR3A+ Mono", "CD14+ Mono","CD8+CD27+ T","Naive CD4+ T","MK","NK","CD8+CD27- T","Effector CD8+ T","B") 
+new.cluster.ids <- c("CD4+CD27+ T","Naive CD4+ T","FCGR3A+ Mono","CD14+ Mono","CD4+CD27-DR+ T","CD8+CD27+ T","CD8+CD27- T","CD8+CD27- T", "CD8+CD27- T","CD8+CD27+ T","CD8+CD27- T","CD4+CD27-DR- T","B","MK","Effector CD8+ T","NK")
 ```
 
 ### Visualize on cluster IDs
