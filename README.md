@@ -266,7 +266,7 @@ Mimitou, E.P. et al. (2019). Multiplexed detection of proteins, transcriptomes,
 clonotypes and CRISPR perturbations in single cells. Nature Methods, 16(5), 409–412.
 
 
-# Reproducibility
+## Reproducibility
 ### Datasets
 Instruction for downloading real datasets are provided in the paper. The R scripts to simulate synthetic datasets using Splatter are in the directory 'Rscript/splatter_simulation'.
 
