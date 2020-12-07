@@ -268,7 +268,7 @@ clonotypes and CRISPR perturbations in single cells. Nature Methods, 16(5), 409â
 
 ## Reproducibility
 ### Datasets
-Instruction for downloading real datasets are provided in the paper. The R scripts to simulate synthetic datasets using Splatter are in the directory 'Rscript/splatter_simulation'.
+Instruction for downloading real datasets are provided in the paper. The R scripts to simulate 24 synthetic datasets using Splatter are in the directory 'Rscript/splatter_simulation'.
 
 ### Preprocessing
 The scripts for preprocessing of real and simulated datasets (stored as a SCE object) are provided in Rscipts/preprocessing. The similar Matlab-based preprocessing script is provided in 'preprocessing_benchmarks.m'.
