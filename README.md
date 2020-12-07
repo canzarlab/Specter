@@ -212,7 +212,7 @@ clustering to known cell types:
 #### Look at the top marker genes and ADT, we get the following cluster IDs.
 
 ``` r
-new.cluster.ids <- c("CD4+CD27-DR+ T","CD8+CD27- T","CD8+CD27- T","CD8+CD27- T","CD4+CD27+ T","CD4+CD27-DR- T","CD14+ Mono","FCGR3A+ Mono", "CD14+ Mono","CD8+CD27+ T","Naive CD4+ T","MK","NK","CD8+CD27- T","Effector CD8+ T","B")
+new.cluster.ids <- c("CD4+CD27+ T","Naive CD4+ T","FCGR3A+ Mono","CD14+ Mono","CD4+CD27-DR+ T","CD8+CD27+ T","CD8+CD27- T","CD8+CD27- T", "CD8+CD27- T","CD8+CD27+ T","CD8+CD27- T","CD4+CD27-DR- T","B","MK","Effector CD8+ T","NK")
 ```
 
 #### Visualize on cluster IDs
@@ -264,4 +264,24 @@ Stoeckius, M. et al. (2017). Simultaneous epitope and transcriptome
 measurement in single cells. Nature Methods, 14(9), 865–868. <br>
 Mimitou, E.P. et al. (2019). Multiplexed detection of proteins, transcriptomes, 
 clonotypes and CRISPR perturbations in single cells. Nature Methods, 16(5), 409–412.
+
+
+## Reproducibility
+### Datasets
+Instruction for downloading real datasets are provided in the paper. The R scripts to simulate 24 synthetic datasets using Splatter are in the directory 'Rscript/splatter_simulation'.
+
+### Preprocessing
+The scripts for preprocessing of real and simulated datasets (stored as a SCE object) are provided in Rscipts/preprocessing. The similar Matlab-based preprocessing script is provided in 'preprocessing_benchmarks.m'.
+
+### Running Specter
+Modify 'Specter_demo.m' for a query dataset.
+
+### Rare cell experiments
+The scripts for reproducing rare cell experiments are provided in the directory 'Rscripts/rare_cell_experiments'.
+
+### Multi-modal analysis
+Provided above.
+
+
+
 
