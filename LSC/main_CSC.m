@@ -1,3 +1,4 @@
+% Author: Modified package by Van Hoan Do
 % This is the main function where you enter parameters, your graph to analyze, 
 % and launch the CSC algorithm
 %

@@ -1,3 +1,4 @@
+% Author: Modified package by Van Hoan Do
 % Accuracy evaluation: returns the Rand Index given predicted and true
 % labels
 %

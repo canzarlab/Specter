@@ -14,6 +14,9 @@ function cls = eval_fast_Specter(fea, n_clusters, ensemble_size, mingamma, n_nei
     params.mode = 0; % 0: ensemble
     params.n_clusters = n_clusters;
     [opts, fea] = learn_LSC(fea, params);
+    
+    rand ("state", 1000000);
+    rand('seed', 1089); 
 
     opts.kmMaxIter = 30;
     opts.maxIter = 100;
@@ -25,13 +28,13 @@ function cls = eval_fast_Specter(fea, n_clusters, ensemble_size, mingamma, n_nei
     N = ensemble_size; 
     % fprintf('Ensemble size: %i\n', N);
     optsVec = repmat(opts, N);
-    minsigma = mingamma; 
 
     clusters = zeros(N, m);
         
     parfor i=1:1:N
-        optsVec(i).r = max(3, round(opts.r*(rand*0.5+0.8)));
-        clusters(i,:) = LSC_eigen(fea, n_clusters, optsVec(i), rand*0.1 + minsigma); % rand*(1.5)+0.5 % VERY GOOD
+        optsVec(i).r = max(5, round(opts.r*(rand*0.5+0.8)));
+        optsVec(i).seed = 10*i; % use different seed to avoid repetive clustering.
+        clusters(i,:) = LSC_eigen(fea, n_clusters, optsVec(i), rand*0.1 + mingamma); 
     end
 
     n_samples = min(m, round(n_clusters*sqrt(m)));

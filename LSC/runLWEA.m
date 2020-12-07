@@ -1,3 +1,4 @@
+% Author: Modified package by Van Hoan Do
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                   %
 % This is a demo for the LWEA and LWGP algorithms. If you find this %

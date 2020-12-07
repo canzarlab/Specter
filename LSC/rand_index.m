@@ -1,3 +1,4 @@
+% Author: Modified package by Van Hoan Do
 function ri = rand_index(p1, p2, varargin)
 %RAND_INDEX Computes the rand index between two partitions.
 %   RAND_INDEX(p1, p2) computes the rand index between partitions p1 and

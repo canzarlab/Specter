@@ -1,4 +1,7 @@
+% Author: Modified package by Van Hoan Do
 function label = LSC_eigen(data,k,opts, Sigma)
+% rng('default');
+% rng(1);
 % label = LSC(data,k,opts): Landmark-based Spectral Clustering
 % Input:
 %       - data: the data matrix of size nSmp x nFea, where each row is a sample
@@ -23,7 +26,8 @@ function label = LSC_eigen(data,k,opts, Sigma)
 % Usage:
 %       data = rand([100,50]);
 %       label = LSC(data,10);
-
+[m, n] = size(data);
+data = data(:,1:min(5*k, n));
 % Set and parse parameters
 if (~exist('opts','var'))
    opts = [];
@@ -34,6 +38,8 @@ p = 1000;
 if isfield(opts,'p')
     p = opts.p;
 end
+
+seed = opts.seed;
 
 r = 5;
 if isfield(opts,'r')
@@ -55,6 +61,8 @@ if isfield(opts,'mode')
     mode = opts.mode;
 end
 
+sigma = Sig(Sigma, m, k);
+
 nSmp=size(data,1);
 
 % Landmark selection
@@ -71,8 +79,14 @@ if strcmp(mode,'kmeans')
     end
     % [dump,marks]=litekmeans(data,p,'MaxIter',kmMaxIter,'Replicates',kmNumRep);
     % clear kmMaxIter kmNumRep
-    marks = getRepresentativesByHybridSelection(data, p);
+    marks = getRepresentativesByHybridSelection(data, p, seed);
+    % fprintf('Size of representatives')
+    % size(marks)
+
 elseif strcmp(mode,'random')
+    rng('default');
+    rng(1);
+    rand('state', seed);
     indSmp = randperm(nSmp);
     marks = data(indSmp(1:p),:);
     clear indSmp
@@ -86,11 +100,6 @@ end
 % % tic;
 D = EuDist2(data,marks,0);
 % toc;
-if isfield(opts,'sigma')
-    sigma = Sigma;
-else
-    sigma = Sigma;
-end
 % fprintf('prepare features for SVD\n');
 % tic;
 dump = zeros(nSmp,r);
@@ -126,17 +135,24 @@ U(:,1) = [];
 % Final kmeans
 % tic;
 % fprintf('Kmeans\n');
+%% very good
+rng('default');
+rng(1);
+rand('state', seed);
+% rng('default');
+% rng(1);
+% rand('state', 1);
 label=litekmeans(U,k,'MaxIter',maxIter,'Replicates',numRep);
 % toc;
 
-function RpFea = getRepresentativesByHybridSelection(fea, pSize, cntTimes)
+function RpFea = getRepresentativesByHybridSelection(fea, pSize, seed, cntTimes)
 % Huang Dong. Mar. 20, 2019.
 % Select $pSize$ representatives by hybrid selection.
 % First, randomly select $pSize * cntTimes$ candidate representatives.
 % Then, partition the candidates into $pSize$ clusters by k-means, and get
 % the $pSize$ cluster centers as the final representatives.
 
-if nargin < 3
+if nargin < 4
     cntTimes = 10;
 end
 
@@ -149,7 +165,14 @@ if bigPSize>N
     bigPSize = N;
 end
 
-rand('state',sum(100*clock)*rand(1));% 7.7009e+04
+rng('default');
+rng(seed);
+rand('state', seed);
+if (seed==-1)
+    rand('state',sum(100*clock)*rand(1));% 7.7009e+04 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+end
+% fprintf('%i \t', abs(seed_id-seed))
+% seed_vec = [seed_vec sum(100*clock)*rand(1)];
 bigRpFea = getRepresentivesByRandomSelection(fea, bigPSize);
 
 % [~, RpFea] = kmeans(bigRpFea,pSize,'MaxIter',20);
@@ -165,4 +188,5 @@ if pSize>N
 end
 selectIdxs = randperm(N,pSize);
 RpFea = fea(selectIdxs,:);
+
 

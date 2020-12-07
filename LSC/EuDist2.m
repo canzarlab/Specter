@@ -1,3 +1,4 @@
+% Author: Modified package by Van Hoan Do
 function D = EuDist2(fea_a,fea_b,bSqrt)
 %EUDIST2 Efficiently Compute the Euclidean Distance Matrix by Exploring the
 %Matlab matrix operations.

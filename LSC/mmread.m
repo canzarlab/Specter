@@ -1,3 +1,4 @@
+% Author: Modified package by Van Hoan Do
 function  [A,rows,cols,entries,rep,field,symm] = mmread(filename)
 %
 % function  [A] = mmread(filename)

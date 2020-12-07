@@ -1,3 +1,4 @@
+% Author: Modified package by Van Hoan Do
 function label = LSC_SC3(data,k,opts, n_dim, maxD)
 % label = LSC_SC3(data,k,opts, N, sort_rowZ, n_eigens): Landmark-based Spectral Clustering
 % use SC3

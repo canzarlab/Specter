@@ -63,6 +63,9 @@ function [opts, new_fea] = learn_LSC(fea, params)
         opts.r = max(4, n_clusters);
         opts.p= min(500, round(m/5)); %round(m/10);
     end
+    
+    opts.seed = 0; % set seed
+     
     % use Matlab kmeans or liteKmeans
     % opts.kmeans = 'lite';
     % factor = m/opts.reduceRatio;

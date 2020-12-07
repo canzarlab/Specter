@@ -1,3 +1,4 @@
+% Author: Modified package by Van Hoan Do
 function D2 = mydist(x,y)
     % D2 = sum(x' == y');
     [m,p] = size(y);

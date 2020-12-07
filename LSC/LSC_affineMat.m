@@ -1,3 +1,4 @@
+% Author: Modified package by Van Hoan Do
 function affineMat = LSC_affineMat(data,k,opts, Sigma)
 % label = LSC(data,k,opts): Landmark-based Spectral Clustering
 % Input:

@@ -1,3 +1,4 @@
+% Author: Modified package by Van Hoan Do
 function [word, remainder] = gettok(string)
 %
 %  function [word, remainder] = gettok(string)

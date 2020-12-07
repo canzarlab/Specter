@@ -1,3 +1,4 @@
+% Author: Modified package by Van Hoan Do
 function d = L2_distance(a,b,df)
 % L2_DISTANCE - computes Euclidean distance matrix
 %

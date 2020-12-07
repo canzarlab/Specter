@@ -1,3 +1,4 @@
+% Author: Modified package by Van Hoan Do
 function [U, S, V] = mySVD(X,ReducedDim)
 %mySVD    Accelerated singular value decomposition.
 %   [U,S,V] = mySVD(X) produces a diagonal matrix S, of the  
