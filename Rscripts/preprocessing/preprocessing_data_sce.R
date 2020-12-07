@@ -9,9 +9,10 @@ process_data_HG <- function(data_dir, dataname){
   ## dataname: name of the dataset
   
   sce <- readRDS(data_dir)
-  x <- as.factor(sce$cell_type1)
-  levels(x) <- 1:length(levels(x))
-  labels <- as.numeric(x)
+  # Get label of real dataset
+  # x <- as.factor(sce$cell_type1)
+  # levels(x) <- 1:length(levels(x))
+  # labels <- as.numeric(x)
   if(!("logcounts") %in% names(assays(sce)) && ("counts") %in% names(assays(sce)))
   {
     counts = assays(sce)$counts
@@ -37,7 +38,7 @@ process_data_HG <- function(data_dir, dataname){
               sep = ",", row.names = F, col.names = F)
   
   ## save labels for simulated data (uncomment below)
-  # x <- as.factor(sim1$Group)
+  # x <- as.factor(sce$Group)
   # levels(x) <- 1:length(levels(x))
   # labels <- as.numeric(x)
   # write.table(labels,file = paste0(dataname, "_labels.csv"),
