@@ -20,4 +20,6 @@ sim1 <- runPCA(sim1)
 ## save data
 simdatName <- "DE1GpbmcN1k"
 colData(sim1)$phenoid <- sim1$Group
+
+## Create a directory "splat_data" and save the synthetic dataset
 saveRDS(sim1, paste0("splat_data/", simdatName, ".rds"))

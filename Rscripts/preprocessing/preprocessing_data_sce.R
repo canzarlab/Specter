@@ -8,7 +8,7 @@ process_data_HG <- function(data_dir, dataname){
   ## data_dir: input directory of data (SCE object)
   ## dataname: name of the dataset
   
-  sce <- readRDS(file_dir)
+  sce <- readRDS(data_dir)
   x <- as.factor(sce$cell_type1)
   levels(x) <- 1:length(levels(x))
   labels <- as.numeric(x)
@@ -33,6 +33,21 @@ process_data_HG <- function(data_dir, dataname){
   # print(dim(dat))
   N <- min(100, dim(dat)[2]-1) #handle data with smaller than 100 cells
   Data1 <- pca$x[, 1:N, drop = FALSE]
-  write.table(Data1,file = paste0("data/", dataname, "_HG2k_pca100.csv"),
+  write.table(Data1,file = paste0(dataname, "_HG2k_pca100.csv"),
               sep = ",", row.names = F, col.names = F)
+  
+  ## save labels for simulated data (uncomment below)
+  # x <- as.factor(sim1$Group)
+  # levels(x) <- 1:length(levels(x))
+  # labels <- as.numeric(x)
+  # write.table(labels,file = paste0(dataname, "_labels.csv"),
+  #             sep = ",", row.names = F, col.names = F)
 }
+
+# An example
+## Input data dir object
+data_dir <- "../splatter_simulation/splat_data/DE1GpbmcN1k.rds"
+## input data name
+dataname <- "DE1GpbmcN1k"
+## Run preprocessing
+process_data_HG(data_dir, dataname)
