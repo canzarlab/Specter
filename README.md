@@ -265,3 +265,23 @@ measurement in single cells. Nature Methods, 14(9), 865–868. <br>
 Mimitou, E.P. et al. (2019). Multiplexed detection of proteins, transcriptomes, 
 clonotypes and CRISPR perturbations in single cells. Nature Methods, 16(5), 409–412.
 
+
+# Reproducibility
+### Datasets
+Instruction for downloading real datasets are provided in the paper. The R scripts to simulate synthetic datasets using Splatter are in the directory 'Rscript/splatter_simulation'.
+
+### Preprocessing
+The scripts for preprocessing of real and simulated datasets (stored as a SCE object) are provided in Rscipts/preprocessing. The similar Matlab-based preprocessing script is provided in 'preprocessing_benchmarks.m'.
+
+### Running Specter
+Modify 'Specter_demo.m' for a query dataset.
+
+### Rare cell experiments
+The scripts for reproducing rare cell experiments are provided in the directory 'Rscripts/rare_cell_experiments'.
+
+### Multi-modal analysis
+Provided above.
+
+
+
+
