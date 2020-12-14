@@ -1,15 +1,19 @@
 function cls = eval_fast_Specter(fea, n_clusters, ensemble_size, mingamma, n_neighbors)
-    % Input: fea: expression data where rows are cells, collumns are PCs (genes)
-    % n_clusters: number of clusters
-    % ensemble_size: number of clusterings in the ensemble 
-    % mingamma: minimum gaussion bandwidth (default: 0.1)
-    % n_neighbors: parameter for k-nearest neighbor algorithm 
+% Input: 
+    % - fea: expression data where rows are cells, collumns are principal components computed by PCA or genes
+    % - n_clusters: number of clusters
+    % - ensemble_size: number of clusterings in the ensemble 
+    % - mingamma: minimum gaussion bandwidth (default: 0.1), ensemble is generated 
+    % by choose gamma from interval [mingamma, mingamma + 0.1] at random
+    % - n_neighbors: parameter for k-nearest neighbor algorithm 
+% Output:
+    % cls: clusters of cells
     
     [m, n] = size(fea);
     samples_size = [n_clusters*100.0/sqrt(m)]; 
-     % apply pre-processing
-    params.HV = 1; % use HV seletion (0: no)
-    params.PCA = 1;
+    % apply pre-processing
+    params.HV = 1; % use highly variable genes selection: 1: yes, 0: no
+    params.PCA = 1; % apply PCA: 1: yes, 0: no
     params.print = 1; % print results
     params.mode = 0; % 0: ensemble
     params.n_clusters = n_clusters;

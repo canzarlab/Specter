@@ -1,9 +1,12 @@
 % Author: Van Hoan Do
 function cls = eval_exact_Specter(fea, n_clusters, ensemble_size, mingamma)
-    % Input: fea: expression data where rows are cells, collumns are PCs (genes)
-    % n_clusters: number of clusters
-    % ensemble_size: number of clusterings in the ensemble 
-    % mingamma: minimum gaussion bandwidth (default: 0.1)
+% Input: 
+    % -fea: expression data where rows are cells, collumns are principal components computed by PCA or genes
+    % -n_clusters: number of clusters
+    % -ensemble_size: number of clusterings in the ensemble 
+    % -mingamma: minimum gaussion bandwidth (default: 0.1)
+% Output:
+    % cls: clusters of cells.
     
     % matlab seed
     rand ("state", 1000000);
@@ -11,8 +14,8 @@ function cls = eval_exact_Specter(fea, n_clusters, ensemble_size, mingamma)
     [m, n] = size(fea);
     % apply pre-processing
     params.mode =0;
-    params.HV = 1; % use HV seletion (0: no)
-    params.PCA = 1;
+    params.HV = 1; % use highly variable genes selection: 1: yes, 0: no
+    params.PCA = 1; % apply PCA: 1: yes, 0: no
     params.print = 1; % print results
     params.n_clusters = n_clusters;
     [opts, fea] = learn_LSC(fea, params);
