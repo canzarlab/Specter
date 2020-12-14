@@ -1,7 +1,5 @@
 % Author: Modified package by Van Hoan Do
 function label = LSC_eigen(data,k,opts, Sigma)
-% rng('default');
-% rng(1);
 % label = LSC(data,k,opts): Landmark-based Spectral Clustering
 % Input:
 %       - data: the data matrix of size nSmp x nFea, where each row is a sample
