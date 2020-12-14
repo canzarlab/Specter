@@ -12,6 +12,8 @@ data = csvread("data/zeisel_pca.csv");  % e.g., read zeisel data (reduced data b
 n_clusters = 7; % number of clusters 
 ensemble_size = 200; % ensemble sizes (default: 200)
 mingamma = 0.1; % minimum gaussian bandwidth (default: 0.1), best value in range 0.1 to 0.8
+% All gamma value will be chosen from the inteval [mingamma, mingamma + 0.1]
+% Please refer to the paper for the details
 
 %% We have developed two version of Specter. Let Specter to decide the algorithm
 tic;
